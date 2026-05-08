@@ -1,0 +1,9 @@
+{
+  "name": "reportAnalytics",
+  "version": "1.0.0",
+  "description": "Ingest per-user daily analytics for ops dashboard",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.4.0"
+  }
+}

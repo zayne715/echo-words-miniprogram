@@ -1,0 +1,9 @@
+{
+  "name": "baiduTts",
+  "version": "1.0.0",
+  "description": "Baidu text-to-speech for English words/sentences",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.4.0"
+  }
+}

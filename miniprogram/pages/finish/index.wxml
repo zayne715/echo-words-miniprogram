@@ -1,0 +1,7 @@
+<view class="finish-page {{entered ? 'finish-page-entered' : ''}}">
+  <view class="content">
+    <text class="emoji">✨</text>
+    <text class="title">Round 2: Recall Test</text>
+    <text class="subtitle">Get ready...</text>
+  </view>
+</view>

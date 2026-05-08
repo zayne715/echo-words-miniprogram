@@ -1,0 +1,85 @@
+<view class="result-page {{entered ? 'result-page-entered' : ''}}">
+  <scroll-view class="page-scroll" scroll-y="true">
+    <view class="page-scroll-content" style="padding-top: {{navTop}}px;">
+      <view class="top-bar">
+        <view class="circle-btn" bindtap="onBackHome">
+          <image class="circle-icon" src="/images/home-icons/6dafc63eff0172e49e6a21d526cf274db7e46bc3.svg" mode="aspectFit" />
+        </view>
+        <view class="header-progress">
+          <view class="header-progress-fill tier-{{progressTier}}" style="width: {{progressFillWidth}}%;"></view>
+          <text class="header-progress-text">{{progressText}}</text>
+        </view>
+        <view class="circle-btn circle-btn-light" bindtap="onBackToPrevWordSecondScreen">
+          <view class="reply-wrap">
+            <image class="reply-base" src="/images/home-icons/76cea484aa3fa238f18d58c44aa94af32f279da2.svg" mode="aspectFit" />
+            <image class="reply-arrow" src="/images/home-icons/31901b93e2ee1a23da44c4af6427d2a11906df34.svg" mode="aspectFit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="content-main">
+        <view class="word-title-row">
+          <image class="word-audio" src="/images/home-icons/c7d6beec25db1c5b80705b162fa0b86d4164c358.svg" mode="aspectFit" bindtap="onTapSpeakWord" />
+          <text class="word-title">{{wordData.word}}</text>
+        </view>
+        <text class="word-phonetic">{{wordData.phonetic}}</text>
+        <view class="word-meaning-row">
+          <text class="word-pos">{{wordData.pos}}</text>
+          <text class="word-meaning-cn">{{wordData.meaning}}</text>
+        </view>
+
+        <view class="tab-card">
+          <view class="tab-head">
+            <view class="tab-btn {{activeTab === 'examples' ? 'tab-active' : ''}}" data-tab="examples" bindtap="onSwitchTab">
+              <text class="tab-btn-text {{activeTab === 'examples' ? 'tab-text-active' : ''}}">{{tabExamplesLabel}}</text>
+            </view>
+            <view class="tab-btn {{activeTab === 'inflections' ? 'tab-active' : ''}}" data-tab="inflections" bindtap="onSwitchTab">
+              <text class="tab-btn-text {{activeTab === 'inflections' ? 'tab-text-active' : ''}}">{{tabInflectionsLabel}}</text>
+            </view>
+            <view class="tab-btn {{activeTab === 'collocations' ? 'tab-active' : ''}}" data-tab="collocations" bindtap="onSwitchTab">
+              <text class="tab-btn-text {{activeTab === 'collocations' ? 'tab-text-active' : ''}}">Collocations</text>
+            </view>
+          </view>
+
+          <view class="tab-body tab-body--examples" wx:if="{{activeTab === 'examples'}}">
+            <view class="example-memory-anchor" wx:if="{{wordData.imageUrl && !wordImageBroken}}">
+              <image
+                class="example-memory-anchor-img"
+                src="{{wordData.imageUrl}}"
+                mode="aspectFit"
+                binderror="onWordImageError"
+              />
+            </view>
+            <view class="example-lines-wrap">
+              <view class="line-item {{index > 0 ? 'line-gap' : ''}}" wx:for="{{wordData.examples}}" wx:key="enPre" wx:for-item="item">
+                <text class="line-en">{{item.enPre}}<text class="hl">{{item.enHighlight}}</text>{{item.enPost}}</text>
+                <text class="line-cn">{{item.cn}}</text>
+              </view>
+            </view>
+          </view>
+
+          <view class="tab-body" wx:if="{{activeTab === 'inflections'}}">
+            <view class="inf-row" wx:for="{{wordData.inflections}}" wx:key="*this" wx:for-item="item">
+              <text class="inf-key">{{item[0]}}</text><text class="inf-val">{{item[1]}}</text>
+            </view>
+          </view>
+
+          <view class="tab-body" wx:if="{{activeTab === 'collocations'}}">
+            <view class="col-row" wx:for="{{wordData.collocations}}" wx:key="*this" wx:for-item="item">
+              <text class="col-en">{{item[0]}}</text><text class="col-cn">{{item[1]}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="bottom-actions-wrap {{showMistakeAndNext ? '' : 'bottom-actions-wrap-single'}}">
+    <view wx:if="{{showMistakeAndNext}}" class="action-btn action-btn-left {{isMistakePressed ? 'btn-pressed' : 'btn-release'}} {{isActionSubmitting ? 'btn-disabled' : ''}}" data-action="mistake" bindtap="onTapBottomAction">
+      <text class="action-btn-left-text">Mistake ✗</text>
+    </view>
+    <view class="action-btn {{showMistakeAndNext ? 'action-btn-right' : 'action-btn-single'}} {{isNextPressed ? 'btn-pressed' : 'btn-release'}} {{isActionSubmitting ? 'btn-disabled' : ''}}" data-action="next" bindtap="onTapBottomAction">
+      <text class="action-btn-right-text">Next Word</text>
+    </view>
+  </view>
+</view>

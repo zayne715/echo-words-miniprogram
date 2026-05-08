@@ -1,0 +1,42 @@
+/* Examples 标签：记忆锚点图（左上角）+ 例句在图下方 */
+.tab-body.tab-body--examples {
+  padding-top: 8px;
+  padding-bottom: 12px;
+}
+
+.tab-body--examples {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.example-memory-anchor {
+  width: 320rpx;
+  max-width: 64%;
+  height: 240rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  background: transparent;
+  flex-shrink: 0;
+  margin-bottom: 8rpx;
+}
+
+.example-memory-anchor-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.example-lines-wrap {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tab-body--examples .example-lines-wrap .line-cn {
+  margin-top: 0;
+}
+
+.tab-body--examples .example-lines-wrap .line-gap {
+  margin-top: 10px;
+}

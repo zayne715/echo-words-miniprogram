@@ -1,0 +1,33 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/ai-memory/index",
+    "pages/story-style/index",
+    "pages/story-generating/index",
+    "pages/story-result/index",
+    "pages/me/index",
+    "pages/my-saves/index",
+    "pages/review-word/index",
+    "pages/review-detail/index",
+    "pages/review-complete/index",
+    "pages/learning/index",
+    "pages/word-detail/index",
+    "pages/learning-next/index",
+    "pages/word-detail-absorb/index",
+    "pages/finish/index",
+    "pages/finish-round3/index",
+    "pages/finish-final/index",
+    "pages/recall-result/index",
+    "pages/round-complete/index"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "词境",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents"
+}

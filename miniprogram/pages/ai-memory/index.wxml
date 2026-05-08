@@ -1,0 +1,193 @@
+<view class="ai-page">
+  <view class="ai-top" style="padding-top: {{navTop}}px;">
+    <view class="ai-header">
+      <view class="date-pill" bindtap="onTapDatePill">
+        <image class="date-pill-icon" src="/images/figma/date-icon.svg" mode="aspectFit" />
+        <text class="date-pill-text">{{dateLabel}}</text>
+      </view>
+      <view class="saves-link" bindtap="onTapMySaves">
+        <image class="saves-icon" src="/images/figma/saves-icon.svg" mode="aspectFit" />
+        <text class="saves-text">My Saves</text>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view class="ai-scroll" scroll-y="true" enhanced="true" show-scrollbar="{{false}}">
+    <view class="ai-scroll-inner">
+      <view wx:if="{{memoryEmpty}}" class="ai-empty">
+        <text class="ai-empty-text">No review group was completed on this date. Pick another day or finish a review to see words here.</text>
+      </view>
+      <block wx:else>
+        <view class="group-block" wx:for="{{memoryGroups}}" wx:for-item="grp" wx:for-index="gi" wx:key="id">
+          <view class="group-head">
+            <view class="group-check {{grp.allSelected ? 'group-check-on' : ''}}" catchtap="onToggleGroupAll" data-gi="{{gi}}">
+              <image wx:if="{{grp.allSelected}}" class="group-check-icon" src="/images/figma/check-white.svg" mode="aspectFit" />
+            </view>
+            <image class="group-arrow {{grp.open ? 'group-arrow--open' : ''}}" src="/images/figma/keyboard-arrow-up.svg" mode="aspectFit" bindtap="onToggleGroup" data-gi="{{gi}}" />
+            <view class="group-head-mid" bindtap="onToggleGroup" data-gi="{{gi}}">
+              <text class="group-title">{{grp.title}}</text>
+            </view>
+          </view>
+          <view wx:if="{{grp.open}}" class="word-list">
+            <view
+              class="word-card"
+              wx:for="{{grp.words}}"
+              wx:for-item="w"
+              wx:for-index="wi"
+              wx:key="key"
+              data-gi="{{gi}}"
+              data-wi="{{wi}}"
+              bindtap="onToggleWord"
+            >
+              <view class="word-check {{w.selected ? 'word-check-on' : ''}}">
+                <image wx:if="{{w.selected}}" class="word-check-icon" src="/images/figma/check-white.svg" mode="aspectFit" />
+              </view>
+              <view class="word-body">
+                <text class="word-en">{{w.word}}</text>
+                <view class="word-meaning-row">
+                  <text wx:if="{{w.pos}}" class="word-pos">{{w.pos}}</text>
+                  <text class="word-cn">{{w.meaning}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+
+  <view class="ai-bottom">
+    <view
+      class="select-btn {{hasSelection ? 'select-btn-active' : 'select-btn-disabled'}}"
+      bindtap="onTapPrimary"
+    >
+      <text class="select-btn-text">{{primaryButtonLabel}}</text>
+    </view>
+  </view>
+
+  <view class="tab-bar">
+    <view class="tab-pill">
+      <view class="tab-slot tab-slot-words" bindtap="onTabWords">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-fig-book-spine" src="/images/figma/tab-book-spine.svg" mode="aspectFit" />
+          <image class="tab-fig-layer tab-fig-book-body" src="/images/figma/tab-book-body.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">Words</text>
+      </view>
+      <view class="tab-slot tab-slot-ai tab-slot--active">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-ai-icon-single" src="/images/figma/tab-ai-icon-active.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">AI Memory</text>
+      </view>
+      <view class="tab-slot tab-slot-me" bindtap="onTabMe">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-fig-me-body" src="/images/home-icons/085e1e1538a5a6a1332a621c351fa003f25a6bc0.svg" mode="aspectFit" />
+          <image class="tab-fig-layer tab-fig-me-head" src="/images/home-icons/a7069f68fd8223df4605ba2c0e6c6bff9eb73818.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">Me</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Figma 43:1815 — 选中后浮动按钮：短按打开已选列表，长按拖动 -->
+  <view
+    wx:if="{{hasSelection}}"
+    class="ai-fab"
+    style="left: {{fabLeft}}px; top: {{fabTop}}px;"
+    catchtouchstart="onFabTouchStart"
+    catchtouchmove="onFabTouchMove"
+    catchtouchend="onFabTouchEnd"
+    catchtouchcancel="onFabTouchEnd"
+  >
+    <image class="ai-fab-icon" src="/images/figma/ai-memory-fab-icon.svg" mode="aspectFit" />
+    <view class="ai-fab-badge">
+      <text class="ai-fab-badge-text">{{selectedCount}}</text>
+    </view>
+  </view>
+
+  <!-- Figma 43:1504 — Selected Words 底部抽屉 -->
+  <view wx:if="{{selectedSheetOpen}}" class="sel-sheet-overlay">
+    <view class="sel-sheet-mask" bindtap="onSelectedSheetMaskTap"></view>
+    <view
+      class="sel-sheet-panel {{selectedSheetEnter ? 'sel-sheet-panel--enter' : ''}}"
+      catchtap="onSelectedSheetPanelTap"
+    >
+      <view class="sel-sheet-inner">
+        <view class="sel-sheet-top">
+          <view class="sel-sheet-title-wrap">
+            <text class="sel-sheet-title-line1">Selected Words</text>
+            <text class="sel-sheet-title-note"> (Maximum 20 words can  be selected.)</text>
+          </view>
+          <view class="sel-sheet-close-btn" catchtap="onCloseSelectedSheet">
+            <image class="sel-sheet-close-btn-icon" src="/images/figma/sel-sheet-close-inline-icon.svg" mode="aspectFit" />
+            <text class="sel-sheet-close-btn-text">Close</text>
+          </view>
+        </view>
+        <scroll-view scroll-y class="sel-sheet-scroll" enhanced="true" show-scrollbar="{{false}}">
+          <view class="sel-sheet-chips">
+            <view
+              class="sel-chip"
+              wx:for="{{selectedSheetList}}"
+              wx:for-item="sw"
+              wx:key="chipKey"
+            >
+              <text class="sel-chip-word">{{sw.word}}</text>
+              <view
+                class="sel-chip-remove"
+                catchtap="onRemoveSelectedChip"
+                data-gi="{{sw.groupIndex}}"
+                data-wi="{{sw.wordIndex}}"
+              >
+                <image class="sel-chip-remove-icon" src="/images/figma/sel-chip-remove-icon.svg" mode="aspectFit" />
+              </view>
+            </view>
+          </view>
+        </scroll-view>
+      </view>
+    </view>
+  </view>
+
+  <view
+    wx:if="{{calendarOpen}}"
+    class="cal-overlay"
+    style="padding-top: {{navTop + 8}}px;"
+    bindtap="onCloseCalendar"
+  >
+    <view class="cal-panel" catchtap="onCalPanelTap">
+      <view class="cal-head">
+        <view class="cal-nav-btn" bindtap="onCalendarPrev">
+          <text class="cal-nav-glyph">‹</text>
+        </view>
+        <text class="cal-title">{{calendarTitle}}</text>
+        <view class="cal-nav-btn" bindtap="onCalendarNext">
+          <text class="cal-nav-glyph">›</text>
+        </view>
+      </view>
+      <view class="cal-week-row">
+        <text class="cal-week-label">Mo</text>
+        <text class="cal-week-label">Tu</text>
+        <text class="cal-week-label">We</text>
+        <text class="cal-week-label">Th</text>
+        <text class="cal-week-label">Fr</text>
+        <text class="cal-week-label">Sa</text>
+        <text class="cal-week-label">Su</text>
+      </view>
+      <view class="cal-grid">
+        <view class="cal-row" wx:for="{{calendarRows}}" wx:for-item="row" wx:for-index="ri" wx:key="ri">
+          <view
+            wx:for="{{row}}"
+            wx:for-item="cell"
+            wx:for-index="ci"
+            wx:key="ci"
+            class="cal-cell {{cell.isDay ? 'cal-cell--day' : 'cal-cell--empty'}} {{cell.isSelected ? 'cal-cell--selected' : ''}}"
+            data-day="{{cell.isDay ? cell.day : ''}}"
+            bindtap="onPickCalendarDay"
+          >
+            <text wx:if="{{cell.isDay}}" class="cal-day-text {{cell.isSelected ? 'cal-day-text--on' : ''}}">{{cell.day}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

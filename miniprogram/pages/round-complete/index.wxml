@@ -1,0 +1,12 @@
+<view class="complete-page {{entered ? 'complete-page-entered' : ''}}">
+  <view class="hero-circle">
+    <text class="hero-check">✓</text>
+  </view>
+  <text class="heading">Group Complete!</text>
+  <view class="summary-card">
+    <text class="summary-text">{{summaryLine}}</text>
+  </view>
+  <view class="btn-home" bindtap="onReturnHome">
+    <text class="btn-home-text">Return Home</text>
+  </view>
+</view>

@@ -1,0 +1,172 @@
+@import "../../styles/tabbar.wxss";
+
+page {
+  background: #f5f7fa;
+  height: 100vh;
+  font-family: "SF Pro Display", "Inter", "Helvetica Neue", Arial, "PingFang SC", sans-serif;
+}
+
+.story-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+  background: #f5f7fa;
+}
+
+.story-top {
+  flex-shrink: 0;
+  padding-left: 19.99px;
+  padding-right: 19.99px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+}
+
+.story-nav-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 72px;
+}
+
+.story-back {
+  width: 39.99px;
+  height: 39.99px;
+  border-radius: 20px;
+  background: rgba(107, 114, 128, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.story-back-img {
+  width: 21.991px;
+  height: 21.991px;
+  display: block;
+}
+
+.story-back-spacer {
+  width: 39.99px;
+  height: 39.99px;
+  flex-shrink: 0;
+}
+
+.story-head-center {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.story-title {
+  font-size: 22px;
+  line-height: 33px;
+  font-weight: 700;
+  color: #1f2937;
+  text-align: center;
+}
+
+.story-sub {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+  color: #9ca3af;
+  text-align: center;
+}
+
+.story-scroll {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.story-grid {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 22rpx;
+  padding: 8px 40rpx 320rpx 40rpx;
+  box-sizing: border-box;
+}
+
+/* Figma 234:585–609：110×110 / r16 / 图标 ~30 / 标签 13px Medium */
+.story-card {
+  width: calc((100% - 44rpx) / 3);
+  height: 220rpx;
+  border-radius: 32rpx;
+  border-width: 1.4px;
+  border-style: solid;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20rpx;
+  padding: 18rpx 12rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.story-card--active {
+  border-width: 2px;
+}
+
+.story-card-icon {
+  width: 60rpx;
+  height: 60rpx;
+  flex-shrink: 0;
+}
+
+.story-card-label {
+  font-size: 26rpx;
+  line-height: 34rpx;
+  font-weight: 500;
+  text-align: center;
+  max-width: 100%;
+  padding: 0 4rpx;
+  box-sizing: border-box;
+}
+
+.story-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(env(safe-area-inset-bottom) + 8px);
+  padding: 10px 19.99px calc(12px + 7.994px + 66.858px);
+  z-index: 998;
+  box-sizing: border-box;
+  background: #f5f7fa;
+}
+
+.story-gen-btn {
+  width: 100%;
+  height: 55.999px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-gen-btn--off {
+  background: #d1d5db;
+}
+
+.story-gen-btn--on {
+  background: #6366f1;
+  box-shadow: 0 8rpx 28rpx rgba(99, 102, 241, 0.35);
+}
+
+.story-gen-text {
+  font-size: 17px;
+  line-height: 25.5px;
+  font-weight: 600;
+  color: #ffffff;
+}

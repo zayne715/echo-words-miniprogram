@@ -1,0 +1,64 @@
+<view class="story-page">
+  <view class="story-top" style="padding-top: {{navTop}}px;">
+    <view class="story-nav-row">
+      <view class="story-back" bindtap="onBack">
+        <image class="story-back-img" src="/images/figma/story-style/back.svg" mode="aspectFit" />
+      </view>
+      <view class="story-head-center">
+        <text class="story-title">Choose Story Style</text>
+        <text class="story-sub">{{selectedSummary}}</text>
+      </view>
+      <view class="story-back-spacer"></view>
+    </view>
+  </view>
+
+  <scroll-view class="story-scroll" scroll-y enhanced show-scrollbar="{{false}}">
+    <view class="story-grid">
+      <view
+        class="story-card {{selectedStyle === item.id ? 'story-card--active' : ''}}"
+        wx:for="{{styles}}"
+        wx:key="id"
+        style="background-color: {{item.bg}}; border-color: {{selectedStyle === item.id ? item.color : 'rgba(0,0,0,0)'}};"
+        bindtap="onSelectStyle"
+        data-id="{{item.id}}"
+      >
+        <image class="story-card-icon" src="{{item.icon}}" mode="aspectFit" />
+        <text class="story-card-label" style="color: {{item.color}};">{{item.label}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="story-bottom">
+    <view
+      class="story-gen-btn {{canGenerate ? 'story-gen-btn--on' : 'story-gen-btn--off'}}"
+      bindtap="onGenerate"
+    >
+      <text class="story-gen-text">Generate Story ✨</text>
+    </view>
+  </view>
+
+  <view class="tab-bar">
+    <view class="tab-pill">
+      <view class="tab-slot tab-slot-words" bindtap="onTabWords">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-fig-book-spine" src="/images/figma/tab-book-spine.svg" mode="aspectFit" />
+          <image class="tab-fig-layer tab-fig-book-body" src="/images/figma/tab-book-body.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">Words</text>
+      </view>
+      <view class="tab-slot tab-slot-ai tab-slot--active" bindtap="onTabAiMemory">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-ai-icon-single" src="/images/figma/tab-ai-icon-active.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">AI Memory</text>
+      </view>
+      <view class="tab-slot tab-slot-me" bindtap="onTabMe">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-fig-me-body" src="/images/home-icons/085e1e1538a5a6a1332a621c351fa003f25a6bc0.svg" mode="aspectFit" />
+          <image class="tab-fig-layer tab-fig-me-head" src="/images/home-icons/a7069f68fd8223df4605ba2c0e6c6bff9eb73818.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">Me</text>
+      </view>
+    </view>
+  </view>
+</view>

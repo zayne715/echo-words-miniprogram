@@ -1,0 +1,7 @@
+<view class="finish-r3-page {{entered ? 'finish-r3-page-entered' : ''}}">
+  <view class="content">
+    <text class="emoji">✨</text>
+    <text class="title">Round 3: Consolidation</text>
+    <text class="subtitle">Get ready...</text>
+  </view>
+</view>

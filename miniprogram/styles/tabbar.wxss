@@ -1,0 +1,144 @@
+/* Bottom tab bar — Figma node 42:963 / 42:1079–1103: pill + three absolutely positioned buttons */
+
+.tab-bar {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-top: 9px;
+  padding-left: calc(16px + env(safe-area-inset-left));
+  padding-right: calc(16px + env(safe-area-inset-right));
+  padding-bottom: calc(env(safe-area-inset-bottom) + 10px);
+  box-sizing: border-box;
+  pointer-events: none;
+  background: #f5f7fa;
+}
+
+.tab-pill {
+  position: relative;
+  width: 320px;
+  max-width: calc(100vw - 32px);
+  height: 72px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border-radius: 36px;
+  border: 0.7px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 30px rgba(99, 102, 241, 0.1);
+  background: #ffffff;
+  pointer-events: auto;
+}
+
+.tab-pill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.tab-slot {
+  position: absolute;
+  top: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 4px;
+  box-sizing: border-box;
+  height: 56px;
+  padding: 5px 18px 5px;
+}
+
+/* Figma 24:279 — 三槽宽度与 left */
+.tab-slot-words {
+  left: 7%;
+  width: 25%;
+}
+
+.tab-slot-ai {
+  left: 36.5%;
+  width: 27%;
+}
+
+.tab-slot-me {
+  left: 68%;
+  width: 22%;
+}
+
+.tab-icon-wrap {
+  width: 24px;
+  height: 24px;
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* 仅当前页 tab-slot--active：图标描边已是灰/紫矢量，叠加稿里的紫色光晕（24:279 Words 选中同款） */
+.tab-slot--active .tab-icon-wrap {
+  filter: drop-shadow(0 0 6px rgba(99, 102, 241, 0.4));
+}
+
+.tab-fig-layer {
+  position: absolute;
+}
+
+/* Words — Figma 42:1083–1084 */
+.tab-fig-book-spine {
+  left: 50%;
+  top: 29.17%;
+  width: 12%;
+  height: 58.33%;
+  transform: translateX(-50%);
+}
+
+.tab-fig-book-body {
+  left: 8.33%;
+  top: 12.5%;
+  width: 83.34%;
+  height: 75%;
+}
+
+/* AI Memory — Figma 24:289 单 SVG（主星 8.33% inset + 四短线） */
+.tab-ai-icon-single {
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+}
+
+/* Me — Figma 42:1100–1101 */
+.tab-fig-me-body {
+  left: 20.83%;
+  top: 62.5%;
+  width: 58.34%;
+  height: 25%;
+}
+
+.tab-fig-me-head {
+  left: 33.33%;
+  top: 12.5%;
+  width: 33.34%;
+  height: 33.33%;
+}
+
+.tab-label {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #9ca3af;
+  letter-spacing: 0.2px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.tab-slot--active .tab-label {
+  font-weight: 600;
+  color: #6366f1;
+}

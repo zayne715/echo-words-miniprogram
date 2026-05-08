@@ -1,0 +1,9 @@
+{
+  "name": "deepseekStory",
+  "version": "1.0.0",
+  "description": "Calls DeepSeek Chat API with server-side API key",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.4.0"
+  }
+}

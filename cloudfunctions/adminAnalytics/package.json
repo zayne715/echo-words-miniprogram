@@ -1,0 +1,9 @@
+{
+  "name": "adminAnalytics",
+  "version": "1.0.0",
+  "description": "Admin-only aggregate query for analytics_user_day",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.4.0"
+  }
+}

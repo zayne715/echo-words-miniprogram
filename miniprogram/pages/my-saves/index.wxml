@@ -1,0 +1,161 @@
+<view class="saves-page {{selectionMode ? 'saves-page--selection' : ''}}">
+  <view class="saves-top" style="padding-top: {{navTop}}px;">
+    <view class="saves-head-inner">
+      <view class="saves-toolbar">
+        <view class="toolbar-btn" bindtap="onBack">
+          <image class="toolbar-btn-icon toolbar-btn-icon--lg" src="/images/home-icons/6dafc63eff0172e49e6a21d526cf274db7e46bc3.svg" mode="aspectFit" />
+        </view>
+        <text class="saves-title">My Saves</text>
+        <view class="toolbar-btn" bindtap="onTapHeaderExtra">
+          <image wx:if="{{!selectionMode}}" class="toolbar-btn-icon" src="/images/figma/header-filter-sliders.svg" mode="aspectFit" />
+          <image wx:else class="toolbar-btn-icon toolbar-btn-icon--delete" src="/images/figma/header-delete.svg" mode="aspectFit" />
+        </view>
+      </view>
+      <text wx:if="{{!selectionMode}}" class="saves-subtitle">Your AI-generated stories</text>
+      <view wx:if="{{selectionMode}}" class="select-all-row" bindtap="onToggleSelectAll">
+        <view class="select-circle {{selectAll ? 'select-circle--on' : ''}}">
+          <image wx:if="{{selectAll}}" class="select-check" src="/images/figma/check-white.svg" mode="aspectFit" />
+        </view>
+        <text class="select-all-label">Select All</text>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view class="saves-scroll" scroll-y="true" enhanced="true" show-scrollbar="{{false}}">
+    <view class="saves-scroll-inner">
+      <view wx:if="{{empty}}" class="empty-block">
+        <text class="empty-title">No saved stories yet</text>
+        <text class="empty-desc">Choose words on AI Memory, create a story, and save it — it will appear here.</text>
+      </view>
+
+      <view wx:else class="story-list">
+        <view
+          class="story-row {{selectionMode ? 'story-row--select' : ''}}"
+          wx:for="{{stories}}"
+          wx:key="id"
+        >
+          <view wx:if="{{selectionMode}}" class="select-hit" catchtap="onToggleStory" data-id="{{item.id}}">
+            <view class="select-circle {{item.selected ? 'select-circle--on' : ''}}">
+              <image wx:if="{{item.selected}}" class="select-check" src="/images/figma/check-white.svg" mode="aspectFit" />
+            </view>
+          </view>
+          <view class="story-card" bindtap="onStoryCardTap" data-id="{{item.id}}">
+            <view class="story-card-top">
+              <text class="story-date-short">{{item.dateShort}}</text>
+              <view class="genre-pill genre-pill--{{item.genreKey}}">
+                <text class="genre-pill-text">{{item.genreLabel}}</text>
+              </view>
+            </view>
+            <text class="story-card-heading">{{item.title}}</text>
+            <text wx:if="{{item.preview}}" class="story-body">{{item.preview}}</text>
+            <view class="story-card-bottom">
+              <text class="story-word-count">{{item.wordCountLabel}}</text>
+              <image class="story-chevron" src="/images/figma/card-chevron.svg" mode="aspectFit" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="tab-bar">
+    <view class="tab-pill">
+      <view class="tab-slot tab-slot-words" bindtap="onTabWords">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-fig-book-spine" src="/images/figma/tab-book-spine.svg" mode="aspectFit" />
+          <image class="tab-fig-layer tab-fig-book-body" src="/images/figma/tab-book-body.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">Words</text>
+      </view>
+      <view class="tab-slot tab-slot-ai tab-slot--active" bindtap="onTabAiMemory">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-ai-icon-single" src="/images/figma/tab-ai-icon-active.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">AI Memory</text>
+      </view>
+      <view class="tab-slot tab-slot-me" bindtap="onTabMe">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-fig-me-body" src="/images/home-icons/085e1e1538a5a6a1332a621c351fa003f25a6bc0.svg" mode="aspectFit" />
+          <image class="tab-fig-layer tab-fig-me-head" src="/images/home-icons/a7069f68fd8223df4605ba2c0e6c6bff9eb73818.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">Me</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Figma 63:951 / 底部抽屉详情 https://www.figma.com/design/CWves0kMqmvKxnPap0EaFr/Untitled?node-id=63-951&m=dev -->
+  <view wx:if="{{detailSheetOpen}}" class="story-sheet-overlay">
+    <view class="story-sheet-mask" bindtap="onSheetMaskTap"></view>
+    <view
+      class="story-sheet-panel {{sheetPanelEnter ? 'story-sheet-panel--enter' : ''}}"
+      catchtap="onSheetPanelTap"
+    >
+      <view class="story-sheet-handle-bar">
+        <view class="story-sheet-handle"></view>
+      </view>
+      <view class="story-sheet-header">
+        <view class="story-sheet-head-main">
+          <view class="story-sheet-meta-row">
+            <text class="story-sheet-date">{{detail.dateShort}}</text>
+            <view class="genre-pill genre-pill--{{detail.genreKey}} genre-pill--sheet">
+              <text class="genre-pill-text">{{detail.genreLabel}}</text>
+            </view>
+          </view>
+          <text class="story-sheet-title">{{detail.title}}</text>
+        </view>
+        <view class="story-sheet-close" catchtap="onCloseDetailSheet">
+          <image class="story-sheet-close-icon" src="/images/figma/sheet-close.svg" mode="aspectFit" />
+        </view>
+      </view>
+      <scroll-view scroll-y class="story-sheet-scroll" enhanced="true" show-scrollbar="{{false}}">
+        <view class="story-sheet-scroll-inner">
+          <view
+            class="story-body-block"
+            wx:for="{{detail.bodyBlocks}}"
+            wx:for-item="blk"
+            wx:for-index="bi"
+            wx:key="bi"
+          >
+            <view class="story-en-paragraph" wx:if="{{blk.hasEnglish}}">
+              <text
+                wx:for="{{blk.segments}}"
+                wx:for-item="seg"
+                wx:for-index="si"
+                wx:key="si"
+                class="{{seg.highlight ? 'story-kw' : 'story-plain'}}"
+                selectable="{{true}}"
+              >{{seg.text}}</text>
+            </view>
+            <text
+              wx:if="{{blk.zh}}"
+              class="story-zh-paragraph {{blk.hasEnglish ? 'story-zh-paragraph--after-en' : ''}}"
+              selectable="{{true}}"
+            >{{blk.zh}}</text>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- Figma 66:424 删除确认 https://www.figma.com/design/CWves0kMqmvKxnPap0EaFr/Untitled?node-id=66-424&m=dev -->
+  <view wx:if="{{deleteDialogOpen}}" class="delete-dialog-root">
+    <view
+      class="delete-dialog-mask {{deleteDialogEnter ? 'delete-dialog-mask--enter' : ''}}"
+      bindtap="onDeleteDialogCancel"
+    ></view>
+    <view class="delete-dialog-card {{deleteDialogEnter ? 'delete-dialog-card--enter' : ''}}">
+      <view class="delete-dialog-title-row">
+        <text class="delete-dialog-title">Confirm deletion</text>
+      </view>
+      <text class="delete-dialog-body">{{deleteDialogMessage}}</text>
+      <view class="delete-dialog-actions">
+        <view class="delete-dialog-btn delete-dialog-btn--cancel" bindtap="onDeleteDialogCancel">
+          <text class="delete-dialog-btn-text delete-dialog-btn-text--cancel">Cancel</text>
+        </view>
+        <view class="delete-dialog-btn delete-dialog-btn--primary" bindtap="onDeleteDialogConfirm">
+          <text class="delete-dialog-btn-text delete-dialog-btn-text--primary">Delete</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

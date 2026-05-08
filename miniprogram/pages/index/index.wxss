@@ -1,0 +1,292 @@
+@import "../../styles/tabbar.wxss";
+
+page {
+  background: #f5f7fa;
+  min-height: 100vh;
+  font-family: "SF Pro Display", "Inter", "Helvetica Neue", Arial, "PingFang SC", sans-serif;
+}
+
+.page {
+  padding-left: 36rpx;
+  padding-right: 36rpx;
+  padding-bottom: 190rpx;
+  box-sizing: border-box;
+}
+
+.header {
+  height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title-wrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 48rpx;
+  line-height: 70rpx;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.subtitle {
+  margin-top: 8rpx;
+  font-size: 30rpx;
+  line-height: 44rpx;
+  color: #9ca3af;
+}
+
+.top-icon-wrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  background: #eef2ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.top-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.stats-row {
+  margin-top: 28rpx;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+}
+
+.card {
+  width: calc((100vw - 72rpx - 16px) / 2);
+  max-width: 194px;
+  height: 196px;
+  border-radius: 22px;
+  padding: 22px 18px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.study-card {
+  background: #eef2ff;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.1);
+  transform-origin: center center;
+}
+
+.study-card-pressed {
+  transform: scale(0.97);
+  transition: transform 70ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.study-card-release {
+  transform: scale(1);
+  transition: transform 70ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.study-card-disabled {
+  pointer-events: none;
+}
+
+.review-card {
+  background: #ecfdf5;
+  box-shadow: 0 2px 8px rgba(16, 185, 129, 0.08);
+  transform-origin: center center;
+}
+
+.review-card-pressed {
+  transform: scale(0.97);
+  transition: transform 70ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.card-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-icon-indigo {
+  background: rgba(99, 102, 241, 0.15);
+}
+
+.card-icon-green {
+  background: rgba(16, 185, 129, 0.15);
+}
+
+.card-icon-img {
+  width: 24px;
+  height: 24px;
+}
+
+.review-icon-img {
+  width: 26px;
+  height: 26px;
+}
+
+.card-label {
+  margin-top: 34rpx;
+  font-size: 28rpx;
+  line-height: 42rpx;
+  color: #6b7280;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.card-number {
+  margin-top: 10rpx;
+  font-size: 80rpx;
+  line-height: 82rpx;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.card-number-indigo {
+  color: #6366f1;
+}
+
+.card-number-green {
+  color: #10b981;
+}
+
+.card-hint {
+  margin-top: 8rpx;
+  font-size: 28rpx;
+  line-height: 40rpx;
+  color: #9ca3af;
+  white-space: nowrap;
+}
+
+.separator {
+  margin: 16px 0 0;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.week-stats-section {
+  width: calc(100vw - 72rpx);
+  max-width: 398px;
+  margin: 16px auto 0;
+  box-sizing: border-box;
+}
+
+.week-stats-heading {
+  display: block;
+  font-size: 28rpx;
+  line-height: 42rpx;
+  font-weight: 600;
+  color: #6b7280;
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
+
+.info-card {
+  width: 100%;
+  max-width: 398px;
+  min-height: 106px;
+  height: auto;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  padding: 12px 16px 18px 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  margin-bottom: 12px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.info-card-inner {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+  min-height: 62px;
+}
+
+.streak-card {
+  box-shadow: 0 2px 6px rgba(245, 158, 11, 0.15);
+  margin-bottom: 26px;
+}
+
+.info-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.line-text {
+  font-size: 38rpx;
+  line-height: 44rpx;
+}
+
+.emphasis-dark {
+  color: #37393d;
+  font-weight: 800;
+}
+
+.normal-gray {
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.emphasis-indigo {
+  color: #6366f1;
+  font-weight: 500;
+}
+
+.normal-black {
+  color: #111827;
+  font-weight: 500;
+}
+
+.badge {
+  width: 66px;
+  height: 66px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-red {
+  background: rgba(255, 82, 82, 0.15);
+}
+
+.badge-purple {
+  background: #f8e0ff;
+}
+
+.badge-yellow {
+  background: #fef3c7;
+}
+
+.badge-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.bookmark-wrap {
+  width: 30px;
+  height: 30px;
+  position: relative;
+}
+
+.bookmark-fill {
+  width: 23px;
+  height: 26px;
+  position: absolute;
+  left: 4px;
+  top: 2px;
+}
+

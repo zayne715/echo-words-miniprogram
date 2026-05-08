@@ -1,0 +1,659 @@
+@import "../../styles/tabbar.wxss";
+
+/*
+ * My Saves — Figma node 54:1382
+ * https://www.figma.com/design/CWves0kMqmvKxnPap0EaFr/Untitled?node-id=54-1382&m=dev
+ */
+page {
+  background: #f5f7fa;
+  height: 100vh;
+  font-family: "Inter", "SF Pro Display", "Helvetica Neue", Arial, "PingFang SC", sans-serif;
+}
+
+.saves-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+  background: #f5f7fa;
+}
+
+/* Figma 63:1314 — 多选模式：卡片投影略加重 */
+.saves-page--selection .story-card {
+  box-shadow:
+    0 1px 3px rgba(15, 23, 42, 0.06),
+    0 10px 28px rgba(15, 23, 42, 0.08);
+}
+
+.saves-top {
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.saves-head-inner {
+  padding-left: 19.99px;
+  padding-right: 19.99px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.saves-toolbar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 35.999px;
+}
+
+.toolbar-btn {
+  width: 35.999px;
+  height: 35.999px;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.toolbar-btn-icon {
+  width: 15.998px;
+  height: 15.998px;
+}
+
+.toolbar-btn-icon--lg {
+  width: 17.999px;
+  height: 17.999px;
+}
+
+.toolbar-btn-icon--delete {
+  width: 24px;
+  height: 24px;
+}
+
+/* Select All — Figma 63:1314 */
+.select-all-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 9px;
+  padding-top: 2px;
+}
+
+.select-all-label {
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.select-hit {
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.select-circle {
+  width: 21.991px;
+  height: 21.991px;
+  border-radius: 11px;
+  border: 1.4px solid #d1d5db;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.select-circle--on {
+  border-color: #6366f1;
+  background: #6366f1;
+}
+
+.select-check {
+  width: 11.996px;
+  height: 11.996px;
+}
+
+.story-row--select {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 11.996px;
+}
+
+.story-row--select .story-card {
+  flex: 1;
+  min-width: 0;
+}
+
+.saves-title {
+  flex: 1;
+  text-align: center;
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.saves-subtitle {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+  color: #6b7280;
+}
+
+.saves-scroll {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+}
+
+/* Figma 54:1406 — pl 15.998 / pr 16 / pt 13.997；底留白与 ai-memory 列表一致以免压住 Tab */
+.saves-scroll-inner {
+  padding: 13.997px 16px 168px 15.998px;
+  box-sizing: border-box;
+}
+
+.empty-block {
+  padding: 48px 12px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.empty-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.empty-desc {
+  font-size: 14px;
+  line-height: 21px;
+  color: #9ca3af;
+  max-width: 280px;
+}
+
+.story-list {
+  display: flex;
+  flex-direction: column;
+  gap: 11.996px;
+}
+
+/* Figma 54:1407 — 卡片略立体：细描边 + 分层阴影；字号见下方卡片专用规则 */
+.story-card {
+  position: relative;
+  width: 100%;
+  min-height: 175.445px;
+  padding: 16px;
+  box-sizing: border-box;
+  background: linear-gradient(165deg, #ffffff 0%, #f8fafc 55%, #f3f4f6 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.95);
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04),
+    0 6px 20px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.story-card-top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 25.971px;
+}
+
+.story-date-short {
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  color: #6366f1;
+}
+
+.genre-pill {
+  height: 25.971px;
+  padding: 0 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.story-card .genre-pill {
+  min-height: 27px;
+  height: auto;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.genre-pill-text {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+}
+
+.story-card .genre-pill-text {
+  font-size: 13px;
+  line-height: 19.5px;
+}
+
+.genre-pill--scifi {
+  background: #eef2ff;
+}
+.genre-pill--scifi .genre-pill-text {
+  color: #6366f1;
+}
+
+.genre-pill--romance {
+  background: #fdf2f8;
+}
+.genre-pill--romance .genre-pill-text {
+  color: #ec4899;
+}
+
+.genre-pill--mystery {
+  background: #f3e8ff;
+}
+.genre-pill--mystery .genre-pill-text {
+  color: #9333ea;
+}
+
+.genre-pill--daily {
+  background: #eff6ff;
+}
+.genre-pill--daily .genre-pill-text {
+  color: #3b82f6;
+}
+
+.genre-pill--cultivation {
+  background: #ecfdf5;
+}
+.genre-pill--cultivation .genre-pill-text {
+  color: #10b981;
+}
+
+.genre-pill--urban {
+  background: #eef2ff;
+}
+.genre-pill--urban .genre-pill-text {
+  color: #6366f1;
+}
+
+.genre-pill--survival {
+  background: #fef3c7;
+}
+.genre-pill--survival .genre-pill-text {
+  color: #d97706;
+}
+
+.genre-pill--epic {
+  background: #f3e8ff;
+}
+.genre-pill--epic .genre-pill-text {
+  color: #9333ea;
+}
+
+.genre-pill--heartbeat {
+  background: #fdf2f8;
+}
+.genre-pill--heartbeat .genre-pill-text {
+  color: #ec4899;
+}
+
+.story-card-heading {
+  margin-top: 7.989px;
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 700;
+  color: #1f2937;
+  text-align: left;
+}
+
+.story-body {
+  margin-top: 6px;
+  flex: 1;
+  font-size: 16px;
+  line-height: 25.6px;
+  font-weight: 400;
+  color: #6b7280;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.story-card-bottom {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 17.988px;
+}
+
+.story-word-count {
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+.story-chevron {
+  width: 15.998px;
+  height: 15.998px;
+  flex-shrink: 0;
+}
+
+/* ===== 故事详情底部抽屉 Figma 63:951（点击卡片自下而上）===== */
+/* https://www.figma.com/design/CWves0kMqmvKxnPap0EaFr/Untitled?node-id=63-951&m=dev */
+.story-sheet-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10050;
+}
+
+.story-sheet-mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.story-sheet-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 88vh;
+  background: #ffffff;
+  border-radius: 24px 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(105%);
+  transition: transform 0.32s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.story-sheet-panel--enter {
+  transform: translateY(0);
+}
+
+.story-sheet-handle-bar {
+  flex-shrink: 0;
+  padding-top: 14px;
+  padding-bottom: 3px;
+  display: flex;
+  justify-content: center;
+}
+
+.story-sheet-handle {
+  width: 35.999px;
+  height: 3.991px;
+  border-radius: 2px;
+  background: #e5e7eb;
+}
+
+.story-sheet-header {
+  flex-shrink: 0;
+  position: relative;
+  display: block;
+  padding: 0 19.99px 16px;
+  border-bottom: 0.7px solid #f3f4f6;
+  box-sizing: border-box;
+}
+
+.story-sheet-head-main {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5.992px;
+  padding-right: 44px;
+  box-sizing: border-box;
+}
+
+.story-sheet-meta-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 7.994px;
+}
+
+.story-sheet-date {
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 500;
+  color: #6366f1;
+}
+
+.genre-pill--sheet {
+  height: 23.981px;
+  padding: 0 9.99px;
+  border-radius: 10px;
+}
+
+.genre-pill--sheet .genre-pill-text {
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.story-sheet-title {
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 700;
+  color: #1f2937;
+  text-align: left;
+  width: 100%;
+}
+
+.story-sheet-close {
+  position: absolute;
+  top: 0;
+  right: 19.99px;
+  flex-shrink: 0;
+  width: 31.996px;
+  height: 31.996px;
+  border-radius: 10px;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.story-sheet-close-icon {
+  width: 14.992px;
+  height: 14.992px;
+}
+
+.story-sheet-scroll {
+  flex: 1;
+  height: 0;
+  min-height: 0;
+  width: 100%;
+}
+
+.story-sheet-scroll-inner {
+  padding: 15.998px 19.99px calc(24px + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}
+
+/* Figma 63:1059 — 英文段落内选词紫色 semibold + 中文翻译段 */
+.story-body-block {
+  margin-bottom: 28.8px;
+}
+
+.story-body-block:last-child {
+  margin-bottom: 0;
+}
+
+.story-en-paragraph {
+  font-size: 17px;
+  line-height: 30.6px;
+  margin-bottom: 0;
+}
+
+.story-plain {
+  color: #000000;
+  font-weight: 400;
+}
+
+.story-kw {
+  color: #6366f1;
+  font-weight: 600;
+}
+
+.story-zh-paragraph {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 17px;
+  line-height: 30.6px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.story-zh-paragraph--after-en {
+  margin-top: 4px;
+}
+
+/* Figma 66:424 — 删除确认卡片 */
+.delete-dialog-root {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10100;
+  pointer-events: auto;
+}
+
+.delete-dialog-mask {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 0;
+  background: rgba(31, 32, 36, 0.42);
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+
+.delete-dialog-mask--enter {
+  opacity: 1;
+}
+
+.delete-dialog-card {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: calc(100% - 48px);
+  max-width: 311px;
+  box-sizing: border-box;
+  padding: 20px 18px 18px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid rgba(31, 32, 36, 0.06);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.75) inset,
+    0 8px 28px rgba(31, 32, 36, 0.12),
+    0 24px 56px rgba(31, 32, 36, 0.14);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.94);
+  transition:
+    opacity 0.24s ease,
+    transform 0.26s cubic-bezier(0.34, 1.15, 0.64, 1);
+}
+
+.delete-dialog-card--enter {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.delete-dialog-title-row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.delete-dialog-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f2024;
+  line-height: 26px;
+  letter-spacing: -0.3px;
+  text-align: center;
+}
+
+.delete-dialog-body {
+  display: block;
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #5c6068;
+  line-height: 22px;
+}
+
+.delete-dialog-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.delete-dialog-btn {
+  flex: 1;
+  height: 40px;
+  border-radius: 12px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.delete-dialog-btn--cancel {
+  border: 1.5px solid #006ffd;
+  background: #ffffff;
+}
+
+.delete-dialog-btn--primary {
+  border: 1.5px solid #006ffd;
+  background: #006ffd;
+}
+
+.delete-dialog-btn-text {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 22px;
+}
+
+.delete-dialog-btn-text--cancel {
+  color: #006ffd;
+}
+
+.delete-dialog-btn-text--primary {
+  color: #ffffff;
+}

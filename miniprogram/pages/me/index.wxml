@@ -1,0 +1,223 @@
+<view class="me-page">
+  <view class="me-top-spacer" style="height: {{navTop}}px;"></view>
+  <scroll-view class="me-scroll" scroll-y="true" enhanced="true" show-scrollbar="{{false}}">
+    <view class="me-content">
+      <view class="me-avatar-wrap">
+        <view class="me-avatar {{showAvatarImg ? 'me-avatar--photo' : ''}}">
+          <image wx:if="{{showAvatarImg}}" class="me-avatar-img" src="{{avatarUrl}}" mode="aspectFill" binderror="onAvatarImgError" />
+          <text wx:else class="me-avatar-emoji">🎓</text>
+        </view>
+      </view>
+      <view class="me-name-row">
+        <text class="me-name">{{nickName}}</text>
+        <view class="me-name-edit-hit" catchtap="onOpenProfileSheet">
+          <image class="me-name-edit-icon" src="/images/figma/me-edit-profile.svg" mode="aspectFit" />
+        </view>
+      </view>
+      <view class="me-meta-row">
+        <view class="me-badge">
+          <text class="me-badge-text">✦ CET-6 Learner</text>
+        </view>
+        <text class="me-dot">·</text>
+        <text class="me-id">ID: #4829</text>
+      </view>
+
+      <view class="me-stats-row">
+        <view class="me-stat-card">
+          <view class="me-stat-icon me-stat-icon--violet">
+            <image class="me-stat-icon-img" src="/images/figma/me-stat-words.svg" mode="aspectFit" />
+          </view>
+          <text class="me-stat-value">{{lifetimeWordsDisplay}}</text>
+          <text class="me-stat-label">Words Learned</text>
+        </view>
+        <view class="me-stat-card">
+          <view class="me-stat-icon me-stat-icon--green">
+            <image class="me-stat-icon-img" src="/images/figma/me-stat-time.svg" mode="aspectFit" />
+          </view>
+          <text class="me-stat-value">{{lifetimeTimeDisplay}}</text>
+          <text class="me-stat-label">Study Time</text>
+        </view>
+        <view class="me-stat-card">
+          <view class="me-stat-icon me-stat-icon--slate">
+            <image class="me-stat-icon-img" src="/images/figma/date-icon.svg" mode="aspectFit" />
+          </view>
+          <text class="me-stat-value">{{lifetimeDaysDisplay}}</text>
+          <text class="me-stat-label">Days Learned</text>
+        </view>
+      </view>
+
+      <view class="me-divider"></view>
+
+      <view class="me-settings-card" bindtap="onOpenStudySettingsSheet">
+        <view class="me-settings-icon-wrap">
+          <image class="me-settings-icon" src="/images/figma/me-settings-icon.svg" mode="aspectFit" />
+        </view>
+        <text class="me-settings-title">Study Settings</text>
+        <image class="me-settings-chevron" src="/images/figma/card-chevron.svg" mode="aspectFit" />
+      </view>
+
+      <view class="me-week-card">
+        <text class="me-week-heading">Last 7 Days</text>
+        <view class="me-week-bars">
+          <view class="me-week-col" wx:for="{{weekBars}}" wx:for-index="barIdx" wx:key="barIdx">
+            <text class="me-week-min">{{item.min}}</text>
+            <view class="me-week-bar-wrap">
+              <view
+                class="me-week-bar {{item.empty ? 'me-week-bar--empty' : ''}} {{item.today ? 'me-week-bar--today' : ''}}"
+                style="height: {{item.barHeightPx}}px;"
+              ></view>
+            </view>
+            <text class="me-week-day {{item.today ? 'me-week-day--today' : ''}}">{{item.day}}</text>
+          </view>
+        </view>
+      </view>
+
+      <view class="me-signout" bindtap="onSignOut">
+        <text class="me-signout-text">Sign Out</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="tab-bar">
+    <view class="tab-pill">
+      <view class="tab-slot tab-slot-words" bindtap="onTabWords">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-fig-book-spine" src="/images/figma/tab-book-spine.svg" mode="aspectFit" />
+          <image class="tab-fig-layer tab-fig-book-body" src="/images/figma/tab-book-body.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">Words</text>
+      </view>
+      <view class="tab-slot tab-slot-ai" bindtap="onTabAiMemory">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-ai-icon-single" src="/images/figma/tab-ai-icon.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">AI Memory</text>
+      </view>
+      <view class="tab-slot tab-slot-me tab-slot--active">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-fig-me-body" src="/images/home-icons/085e1e1538a5a6a1332a621c351fa003f25a6bc0.svg" mode="aspectFit" />
+          <image class="tab-fig-layer tab-fig-me-head" src="/images/home-icons/a7069f68fd8223df4605ba2c0e6c6bff9eb73818.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">Me</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Study Settings：自下而上抽屉（Figma 71:477） -->
+  <view wx:if="{{studySheetOpen}}" class="me-ss-overlay">
+    <view class="me-ss-mask" bindtap="onCloseStudySettingsSheet"></view>
+    <view
+      class="me-ss-panel {{studySheetEnter ? 'me-ss-panel--enter' : ''}}"
+      catchtap="onStudySettingsSheetPanelTap"
+    >
+      <view class="me-ss-handle-wrap">
+        <view class="me-ss-handle"></view>
+      </view>
+      <view class="me-ss-head">
+        <text class="me-ss-title">Study Settings</text>
+        <view class="me-ss-close" catchtap="onCloseStudySettingsSheet">
+          <image class="me-ss-close-icon" src="/images/figma/study-settings-close.svg" mode="aspectFit" />
+        </view>
+      </view>
+
+      <view class="me-ss-section">
+        <text class="me-ss-label">Words per Study Group</text>
+        <view class="me-ss-stepper">
+          <view
+            class="me-ss-step-btn"
+            data-action="minusStudy"
+            catchtouchstart="onStepTouchStart"
+            catchtouchend="onStepTouchEnd"
+            catchtouchcancel="onStepTouchCancel"
+          >
+            <image class="me-ss-step-icon" src="/images/figma/study-settings-minus.svg" mode="aspectFit" />
+          </view>
+          <text class="me-ss-step-val">{{studyWords}}</text>
+          <view
+            class="me-ss-step-btn"
+            data-action="plusStudy"
+            catchtouchstart="onStepTouchStart"
+            catchtouchend="onStepTouchEnd"
+            catchtouchcancel="onStepTouchCancel"
+          >
+            <image class="me-ss-step-icon" src="/images/figma/study-settings-plus.svg" mode="aspectFit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="me-ss-section">
+        <text class="me-ss-label">Words per Review Group</text>
+        <view class="me-ss-stepper">
+          <view
+            class="me-ss-step-btn"
+            data-action="minusReview"
+            catchtouchstart="onStepTouchStart"
+            catchtouchend="onStepTouchEnd"
+            catchtouchcancel="onStepTouchCancel"
+          >
+            <image class="me-ss-step-icon" src="/images/figma/study-settings-minus.svg" mode="aspectFit" />
+          </view>
+          <text class="me-ss-step-val">{{reviewWords}}</text>
+          <view
+            class="me-ss-step-btn"
+            data-action="plusReview"
+            catchtouchstart="onStepTouchStart"
+            catchtouchend="onStepTouchEnd"
+            catchtouchcancel="onStepTouchCancel"
+          >
+            <image class="me-ss-step-icon" src="/images/figma/study-settings-plus.svg" mode="aspectFit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="me-ss-done" catchtap="onDoneStudySettingsSheet">
+        <text class="me-ss-done-text">Done</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 个人资料 -->
+  <view wx:if="{{profileSheetOpen}}" class="me-ss-overlay">
+    <view class="me-ss-mask" bindtap="onCloseProfileSheet"></view>
+    <view
+      class="me-ss-panel me-pf-panel {{profileSheetEnter ? 'me-ss-panel--enter' : ''}}"
+      catchtap="onProfileSheetPanelTap"
+    >
+      <view class="me-ss-handle-wrap">
+        <view class="me-ss-handle"></view>
+      </view>
+      <view class="me-ss-head">
+        <text class="me-ss-title">Profile</text>
+        <view class="me-ss-close" catchtap="onCloseProfileSheet">
+          <image class="me-ss-close-icon" src="/images/figma/study-settings-close.svg" mode="aspectFit" />
+        </view>
+      </view>
+
+      <view class="me-pf-avatar-block">
+        <view class="me-pf-avatar-ring">
+          <image wx:if="{{draftAvatarUrl}}" class="me-pf-avatar-img" src="{{draftAvatarUrl}}" mode="aspectFill" />
+          <text wx:else class="me-pf-avatar-ph">🎓</text>
+        </view>
+        <button class="me-pf-choose-btn" open-type="chooseAvatar" bindchooseavatar="onChooseAvatarInSheet">
+          选择头像
+        </button>
+      </view>
+
+      <view class="me-ss-section">
+        <text class="me-ss-label">Nickname</text>
+        <input
+          class="me-pf-nick"
+          type="nickname"
+          value="{{draftNick}}"
+          placeholder="Nickname"
+          maxlength="32"
+          bindinput="onProfileNickInput"
+        />
+      </view>
+
+      <view class="me-ss-done" catchtap="onSaveProfileSheet">
+        <text class="me-ss-done-text">Save</text>
+      </view>
+    </view>
+  </view>
+</view>

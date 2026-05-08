@@ -1,0 +1,62 @@
+<view class="learning-next-page {{entered ? 'learning-next-page-entered' : ''}}">
+  <scroll-view class="page-scroll" scroll-y="true">
+    <view class="page-scroll-content" style="padding-top: {{navTop}}px;">
+      <view class="top-bar">
+        <view class="circle-btn" bindtap="onBackToHome">
+          <image class="circle-icon" src="/images/home-icons/6dafc63eff0172e49e6a21d526cf274db7e46bc3.svg" mode="aspectFit" />
+        </view>
+        <view class="header-progress">
+          <view class="header-progress-fill" style="width: {{progressFillWidth}}%;"></view>
+          <text class="header-progress-text">{{progressLabel}}</text>
+        </view>
+        <view class="circle-btn circle-btn-light {{canGoPrev ? 'circle-btn-light-active' : 'circle-btn-disabled'}}" bindtap="onBackToPrevWordSecondScreen">
+          <view class="reply-wrap">
+            <image class="reply-base" src="/images/home-icons/76cea484aa3fa238f18d58c44aa94af32f279da2.svg" mode="aspectFit" />
+            <image class="reply-arrow" src="/images/home-icons/31901b93e2ee1a23da44c4af6427d2a11906df34.svg" mode="aspectFit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="content-card">
+        <view class="word-title-row">
+          <image class="word-audio" src="/images/home-icons/c7d6beec25db1c5b80705b162fa0b86d4164c358.svg" mode="aspectFit" bindtap="onTapSpeakWord" />
+          <text class="word-title">{{wordData.word}}</text>
+        </view>
+
+        <text class="word-phonetic">{{wordData.phonetic}}</text>
+        <view class="word-meaning-row">
+          <text class="word-pos">{{wordData.pos}}</text>
+          <text class="word-meaning-cn">{{wordData.meaning}}</text>
+        </view>
+
+        <view class="word-image-slot">
+          <view class="word-image-slot-pad">
+            <view class="word-image-slot-inner">
+              <image
+                wx:if="{{wordData.imageUrl && !wordImageBroken}}"
+                class="learning-word-image"
+                src="{{wordData.imageUrl}}"
+                mode="aspectFill"
+                binderror="onWordImageError"
+              />
+              <view wx:else class="image-placeholder"></view>
+            </view>
+          </view>
+        </view>
+
+        <view class="example-row">
+          <image class="word-audio example-line-audio" src="/images/home-icons/c7d6beec25db1c5b80705b162fa0b86d4164c358.svg" mode="aspectFit" bindtap="onTapSpeakPage1Example" />
+          <text class="example-text">{{wordData.sentencePre}}<text class="example-highlight">{{wordData.sentenceHighlight}}</text>{{wordData.sentencePost}}</text>
+        </view>
+
+        <text class="example-cn">{{wordData.sentenceCn}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="bottom-cta-wrap">
+    <view class="bottom-cta {{isContinuePressed ? 'btn-pressed' : 'btn-release'}} {{isContinueAnimating ? 'btn-disabled' : ''}}" bindtap="onTapContinue">
+      <text class="bottom-cta-text">Continue</text>
+    </view>
+  </view>
+</view>

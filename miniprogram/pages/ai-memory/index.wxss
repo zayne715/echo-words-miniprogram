@@ -1,0 +1,623 @@
+@import "../../styles/tabbar.wxss";
+
+page {
+  background: #f5f7fa;
+  height: 100vh;
+  font-family: "SF Pro Display", "Inter", "Helvetica Neue", Arial, "PingFang SC", sans-serif;
+}
+
+.ai-page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  box-sizing: border-box;
+  background: #f5f7fa;
+}
+
+.ai-top {
+  flex-shrink: 0;
+  padding-left: 19.99px;
+  padding-right: 19.99px;
+  padding-bottom: 16px;
+  box-sizing: border-box;
+}
+
+.ai-scroll {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ai-scroll-inner {
+  padding: 0 19.99px 168px;
+  box-sizing: border-box;
+}
+
+.ai-empty {
+  padding: 48px 24px 64px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.ai-empty-text {
+  font-size: 15px;
+  line-height: 22px;
+  font-weight: 500;
+  color: #94a3b8;
+}
+
+.ai-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 32.981px;
+}
+
+.date-pill {
+  display: flex;
+  align-items: center;
+  gap: 5.992px;
+  height: 32.981px;
+  padding: 6px 12px 6px 11.996px;
+  border-radius: 16px;
+  background: #eef2ff;
+  box-sizing: border-box;
+}
+
+.date-pill-icon {
+  width: 13.997px;
+  height: 13.997px;
+  flex-shrink: 0;
+}
+
+.date-pill-text {
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  color: #6366f1;
+}
+
+.saves-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.saves-icon {
+  width: 14.992px;
+  height: 14.992px;
+}
+
+.saves-text {
+  font-size: 15px;
+  line-height: 22.5px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.group-block {
+  background: transparent;
+}
+
+.group-head {
+  display: flex;
+  align-items: center;
+  gap: 11.996px;
+  padding: 10px 0 12px;
+}
+
+.group-arrow {
+  display: block;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  transform: rotate(180deg);
+}
+
+.group-arrow--open {
+  transform: rotate(0deg);
+}
+
+.group-check {
+  width: 21.991px;
+  height: 21.991px;
+  border-radius: 11px;
+  border: 1.4px solid #d1d5db;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.group-check-on {
+  border-color: #6366f1;
+  background: #6366f1;
+}
+
+.group-check-icon {
+  width: 11.996px;
+  height: 11.996px;
+  flex-shrink: 0;
+}
+
+.group-head-mid {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.group-title {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.word-list {
+  display: flex;
+  flex-direction: column;
+  gap: 11.996px;
+}
+
+.word-card {
+  display: flex;
+  align-items: center;
+  gap: 11.996px;
+  min-height: 74.983px;
+  padding: 14px 13.997px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  box-sizing: border-box;
+}
+
+.word-check {
+  width: 21.991px;
+  height: 21.991px;
+  border-radius: 11px;
+  border: 1.4px solid #d1d5db;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.word-check-on {
+  border-color: #6366f1;
+  background: #6366f1;
+}
+
+.word-check-icon {
+  width: 11.996px;
+  height: 11.996px;
+  flex-shrink: 0;
+}
+
+.word-body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.99px;
+}
+
+.word-en {
+  font-size: 17px;
+  line-height: 25.5px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.word-meaning-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.word-pos {
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 500;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.word-cn {
+  flex: 1;
+  min-width: 0;
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 400;
+  color: #9ca3af;
+}
+
+/*
+ * Select 与底部 Tab 之间：整块同色不透明底（z-index 低于 Tab），避免列表滚动透出。
+ * 底边与 tab-bar 一致；下内边距 = 与胶囊间距 + Tab 区与胶囊高度（见 tabbar.wxss）。
+ */
+.ai-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(env(safe-area-inset-bottom) + 8px);
+  padding: 10px 19.99px calc(12px + 7.994px + 66.858px);
+  z-index: 998;
+  box-sizing: border-box;
+  background: #f5f7fa;
+}
+
+.select-btn {
+  width: 100%;
+  height: 55.999px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select-btn-disabled {
+  background: #d1d5db;
+}
+
+.select-btn-active {
+  background: #6366f1;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+}
+
+.select-btn-text {
+  font-size: 15px;
+  line-height: 22.5px;
+  font-weight: 600;
+  color: #ffffff;
+  padding: 0 12px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.select-btn-disabled .select-btn-text {
+  color: #ffffff;
+}
+
+/* Monthly calendar sheet (Figma 43:1950) */
+.cal-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 10050;
+  box-sizing: border-box;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.cal-panel {
+  width: 363px;
+  max-width: calc(100vw - 32px);
+  min-height: 380px;
+  padding: 16px;
+  box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.cal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 40px;
+}
+
+.cal-title {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 700;
+  color: #1f2024;
+}
+
+.cal-nav-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cal-nav-glyph {
+  font-size: 18px;
+  line-height: 1;
+  color: #8f9098;
+}
+
+.cal-week-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+
+.cal-week-label {
+  width: 40px;
+  text-align: center;
+  font-size: 10px;
+  line-height: 14px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8f9098;
+}
+
+.cal-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cal-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.cal-cell {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cal-cell--empty {
+  pointer-events: none;
+}
+
+.cal-cell--day {
+  background: transparent;
+}
+
+.cal-cell--selected {
+  background: #006ffd;
+}
+
+.cal-day-text {
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 700;
+  color: #494a50;
+}
+
+.cal-day-text--on {
+  color: #ffffff;
+}
+
+/* Figma 43:1815 — 浮动按钮（56×56 / r28 / icon + 角标） */
+.ai-fab {
+  position: fixed;
+  z-index: 10020;
+  width: 56px;
+  height: 56px;
+  border-radius: 28px;
+  background: #6366f1;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.4);
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.ai-fab-icon {
+  position: absolute;
+  left: 17px;
+  top: 17px;
+  width: 21.991px;
+  height: 21.991px;
+  display: block;
+  pointer-events: none;
+}
+
+.ai-fab-badge {
+  position: absolute;
+  left: 40px;
+  top: -3.99px;
+  min-width: 19.99px;
+  height: 19.99px;
+  padding: 0 6.441px;
+  border-radius: 10px;
+  background: #ef4444;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.ai-fab-badge-text {
+  font-size: 11px;
+  line-height: 16.5px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* Figma 43:1504 — Selected Words 底部抽屉 */
+.sel-sheet-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10040;
+}
+
+.sel-sheet-mask {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.sel-sheet-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 52vh;
+  max-height: 400px;
+  background: #ffffff;
+  border-radius: 24px 24px 0 0;
+  display: flex;
+  flex-direction: column;
+  transform: translateY(105%);
+  transition: transform 0.32s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.sel-sheet-panel--enter {
+  transform: translateY(0);
+}
+
+.sel-sheet-inner {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 19.99px 19.99px 0;
+  box-sizing: border-box;
+  gap: 15.998px;
+}
+
+.sel-sheet-top {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 27.48px;
+}
+
+.sel-sheet-title-wrap {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.sel-sheet-title-line1 {
+  font-size: 17px;
+  line-height: 25.5px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.sel-sheet-title-note {
+  margin-top: 0;
+  font-size: 13px;
+  line-height: 25.5px;
+  font-weight: 400;
+  color: #ff5555;
+}
+
+.sel-sheet-close-btn {
+  flex-shrink: 0;
+  width: 69.275px;
+  height: 27.48px;
+  border-radius: 16px;
+  background: #f3f4f6;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 7.99px;
+  padding-right: 8px;
+  gap: 5px;
+}
+
+.sel-sheet-close-btn-icon {
+  width: 13.997px;
+  height: 13.997px;
+  flex-shrink: 0;
+}
+
+.sel-sheet-close-btn-text {
+  font-size: 13px;
+  line-height: 19.5px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.sel-sheet-scroll {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.sel-sheet-chips {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 7.994px;
+  padding-bottom: calc(24px + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}
+
+.sel-chip {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  height: 32.981px;
+  padding: 6px 12px 6px 11.996px;
+  border-radius: 24px;
+  background: #6366f1;
+  box-sizing: border-box;
+  gap: 5.992px;
+  max-width: 100%;
+}
+
+.sel-chip-word {
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 240px;
+}
+
+.sel-chip-remove {
+  flex-shrink: 0;
+  width: 12.991px;
+  height: 12.991px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sel-chip-remove-icon {
+  width: 12.991px;
+  height: 12.991px;
+}

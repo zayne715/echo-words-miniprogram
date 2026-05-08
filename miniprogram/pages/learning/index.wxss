@@ -1,0 +1,427 @@
+page {
+  background: #f5f7fa;
+  min-height: 100vh;
+  font-family: "SF Pro Display", "Inter", "Helvetica Neue", Arial, "PingFang SC", sans-serif;
+}
+
+.learning-page {
+  height: 100vh;
+  transform: translateX(100%);
+  transition: transform 220ms ease-out;
+  box-sizing: border-box;
+  background: #f5f7fa;
+}
+
+.page-scroll {
+  height: 100vh;
+}
+
+.page-scroll-content {
+  padding-top: 14px;
+  padding-bottom: 150px;
+  box-sizing: border-box;
+}
+
+.learning-page-entered {
+  transform: translateX(0);
+}
+
+.top-bar {
+  height: 40px;
+  padding: 0 16px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  margin-top: 0;
+  gap: 12px;
+}
+
+.circle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  background: rgba(107, 114, 128, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circle-btn-light {
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  opacity: 0.3;
+  background: rgba(107, 114, 128, 0.08);
+}
+
+.circle-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.reply-wrap {
+  width: 18px;
+  height: 18px;
+  position: relative;
+}
+
+.reply-base {
+  width: 18px;
+  height: 18px;
+}
+
+.reply-arrow {
+  width: 14px;
+  height: 12px;
+  position: absolute;
+  left: 2px;
+  top: 4px;
+}
+
+.header-progress {
+  flex: 1;
+  min-width: 0;
+  height: 30px;
+  margin: 0;
+  background: #e5e7eb;
+  border-radius: 15px;
+  position: relative;
+  overflow: hidden;
+}
+
+.header-progress-fill {
+  height: 30px;
+  border-radius: 15px;
+  background: #6366f1;
+  transition: width 220ms ease;
+}
+
+.header-progress-text {
+  position: absolute;
+  left: 50%;
+  top: 5px;
+  z-index: 1;
+  transform: translateX(-50%);
+  font-size: 26rpx;
+  line-height: 40rpx;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.content-card {
+  margin: 28px 16px 0;
+  width: calc(100vw - 32px);
+  box-sizing: border-box;
+}
+
+.word-title-row {
+  height: 38px;
+  display: flex;
+  align-items: center;
+}
+
+.word-audio {
+  width: 20px;
+  height: 20px;
+}
+
+.word-title {
+  margin-left: 8px;
+  font-size: 68rpx;
+  line-height: 74rpx;
+  color: #1f2937;
+  font-weight: 700;
+}
+
+.word-undo {
+  margin-left: 8px;
+  width: 18px;
+  height: 18px;
+}
+
+.word-phonetic {
+  margin-top: 8px;
+  font-size: 34rpx;
+  line-height: 52rpx;
+  color: #9ca3af;
+}
+
+.word-meaning-row {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.word-pos {
+  font-size: 38rpx;
+  line-height: 58rpx;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.word-meaning-cn {
+  margin-left: 10rpx;
+  font-size: 38rpx;
+  line-height: 58rpx;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.word-image-slot {
+  margin-top: 18px;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #ffc1de;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.word-image-slot-pad {
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+}
+
+.word-image-slot-inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.learning-word-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.example-row {
+  margin-top: 20px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.example-line-audio {
+  flex-shrink: 0;
+  margin-top: 4px;
+  margin-right: 0;
+}
+
+.example-icon-wrap {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  margin-top: 4px;
+}
+
+.example-icon {
+  position: absolute;
+}
+
+.i1 {
+  width: 6px;
+  height: 11px;
+  left: 1px;
+  top: 2px;
+}
+
+.i2 {
+  width: 1px;
+  height: 4px;
+  left: 11px;
+  top: 6px;
+}
+
+.i3 {
+  width: 2px;
+  height: 8px;
+  left: 12px;
+  top: 4px;
+}
+
+.example-text {
+  margin-left: 6px;
+  flex: 1;
+  min-width: 0;
+  font-size: 34rpx;
+  line-height: 54rpx;
+  color: #374151;
+}
+
+.example-highlight {
+  color: #ff5555;
+}
+
+.example-cn {
+  margin-left: 22px;
+  margin-top: 6px;
+  display: block;
+  width: calc(100% - 22px);
+  box-sizing: border-box;
+  font-size: 30rpx;
+  line-height: 46rpx;
+  color: #9ca3af;
+}
+
+.bottom-cta-wrap {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 104px;
+  padding: 12px 16px calc(env(safe-area-inset-bottom) + 12px);
+  box-sizing: border-box;
+  background: #f5f7fa;
+}
+
+.bottom-cta {
+  width: 100%;
+  height: 56px;
+  border-radius: 16px;
+  background: #6366f1;
+  box-shadow: 0 4px 10px rgba(99, 102, 241, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-origin: center center;
+}
+
+.bottom-cta-text {
+  font-size: 34rpx;
+  line-height: 52rpx;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.btn-pressed {
+  transform: scale(0.97);
+  transition: transform 70ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.btn-release {
+  transform: scale(1);
+  transition: transform 70ms cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.btn-disabled {
+  pointer-events: none;
+}
+
+/* iPhone Pro 视觉适配：让流程页控件与内容更饱满 */
+.page-scroll-content {
+  padding-bottom: 168px;
+}
+
+.top-bar {
+  height: 44px;
+  padding: 0 18px;
+  gap: 14px;
+}
+
+.circle-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+}
+
+.circle-btn-light {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.circle-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.header-progress {
+  height: 32px;
+  border-radius: 16px;
+}
+
+.header-progress-fill {
+  height: 32px;
+  border-radius: 16px;
+}
+
+.header-progress-text {
+  top: 6px;
+  font-size: 28rpx;
+  line-height: 40rpx;
+}
+
+.content-card {
+  margin: 32px 18px 0;
+  width: calc(100vw - 36px);
+}
+
+.word-audio {
+  width: 22px;
+  height: 22px;
+}
+
+.word-title {
+  font-size: 74rpx;
+  line-height: 80rpx;
+}
+
+.word-phonetic {
+  font-size: 36rpx;
+  line-height: 56rpx;
+}
+
+.word-pos,
+.word-meaning-cn {
+  font-size: 40rpx;
+  line-height: 62rpx;
+}
+
+.word-image-slot {
+  margin-top: 22px;
+  border-radius: 18px;
+}
+
+.example-text {
+  font-size: 36rpx;
+  line-height: 58rpx;
+}
+
+.example-cn {
+  font-size: 32rpx;
+  line-height: 50rpx;
+}
+
+.bottom-cta-wrap {
+  height: 112px;
+  padding: 14px 18px calc(env(safe-area-inset-bottom) + 14px);
+}
+
+.bottom-cta {
+  height: 60px;
+  border-radius: 18px;
+}
+
+.bottom-cta-text {
+  font-size: 36rpx;
+}
+
+.word-pos,
+.word-meaning-cn {
+  font-size: 34rpx;
+  line-height: 52rpx;
+}

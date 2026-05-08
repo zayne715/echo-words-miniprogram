@@ -1,0 +1,116 @@
+<view class="page" style="padding-top: {{pageTop}}px;">
+  <view class="header">
+    <view class="title-wrap">
+      <text class="title">CET-6 Core Words</text>
+      <text class="subtitle">Build your vocabulary, one scene at a time</text>
+    </view>
+    <view class="top-icon-wrap">
+      <image class="top-icon" src="/images/home-icons/57924dcacbee386d47c2eb3df7352630d3ec1362.svg" mode="aspectFit" />
+    </view>
+  </view>
+
+  <view class="stats-row">
+    <view class="card study-card {{isNewStudyPressed ? 'study-card-pressed' : 'study-card-release'}} {{isNewStudyAnimating ? 'study-card-disabled' : ''}}" bindtap="onTapNewStudy">
+      <view class="card-icon card-icon-indigo">
+        <image class="card-icon-img" src="/images/home-icons/f9bb4c1edf80e42d41abd830b29de84bb179f6fc.svg" mode="aspectFit" />
+      </view>
+      <text class="card-label">New Study</text>
+      <text class="card-number card-number-indigo">{{studyPerGroupDisplay}}</text>
+      <text class="card-hint">words / group</text>
+    </view>
+
+    <view class="card review-card {{isReviewPressed ? 'review-card-pressed' : ''}}" bindtap="onTapReview">
+      <view class="card-icon card-icon-green">
+        <image class="card-icon-img review-icon-img" src="/images/home-icons/3f79d4b8e1be1b8d3629b584f40b2ec21532ed5b.svg" mode="aspectFit" />
+      </view>
+      <text class="card-label">Review</text>
+      <text class="card-number card-number-green">{{reviewDueDisplay}}</text>
+      <text class="card-hint">to review</text>
+    </view>
+  </view>
+
+  <view class="separator"></view>
+
+  <view class="week-stats-section">
+    <text class="week-stats-heading">This Week</text>
+
+    <view class="info-card">
+      <view class="info-card-inner">
+        <view class="info-left">
+          <view class="line-text">
+            <text class="emphasis-dark">{{weekWordsDisplay}}</text>
+            <text class="normal-gray"> {{weekWordsUnit}}</text>
+          </view>
+          <view wx:if="{{showEncourage}}" class="line-text">
+            <text class="emphasis-indigo">{{encourageLine1}}</text>
+          </view>
+        </view>
+        <view class="badge badge-red">
+          <view class="bookmark-wrap">
+            <image class="badge-icon" src="/images/home-icons/5e6815ded4ebe402c80cfdb5e2361bb6062834be.svg" mode="aspectFit" />
+            <image class="bookmark-fill" src="/images/home-icons/2f3254583bb999cec0be9d3bad94d41ab83bf1b7.svg" mode="aspectFit" />
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="info-card">
+      <view class="info-card-inner">
+        <view class="info-left">
+          <view class="line-text">
+            <text class="emphasis-dark">{{weekHoursDisplay}}</text>
+            <text class="normal-gray"> learned</text>
+          </view>
+          <view wx:if="{{showEncourage}}" class="line-text">
+            <text class="emphasis-indigo">{{encourageLine2}}</text>
+          </view>
+        </view>
+        <view class="badge badge-purple">
+          <image class="badge-icon" src="/images/home-icons/03150632950b6e39ab08cd667d5fe55c33aecac8.svg" mode="aspectFit" />
+        </view>
+      </view>
+    </view>
+
+    <view class="info-card streak-card">
+      <view class="info-card-inner">
+        <view class="info-left">
+          <view class="line-text">
+            <text class="emphasis-dark">{{weekDaysStudiedDisplay}}</text>
+            <text class="normal-gray"> {{weekStudiedLabel}}</text>
+          </view>
+          <view wx:if="{{showEncourage}}" class="line-text">
+            <text class="emphasis-indigo">{{encourageLine3}}</text>
+          </view>
+        </view>
+        <view class="badge badge-yellow">
+          <image class="badge-icon" src="/images/home-icons/32b95ec36d04be9e656484356c60542b63ab0a83.svg" mode="aspectFit" />
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="tab-bar">
+    <view class="tab-pill">
+      <view class="tab-slot tab-slot-words tab-slot--active">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-fig-book-spine" src="/images/home-icons/92160fdde786559fa36373d74af54f7a5f812145.svg" mode="aspectFit" />
+          <image class="tab-fig-layer tab-fig-book-body" src="/images/home-icons/07fbba09d459d02a11298bbdef6e6bb3a8df3099.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">Words</text>
+      </view>
+      <view class="tab-slot tab-slot-ai" bindtap="onTapAiMemory">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-ai-icon-single" src="/images/figma/tab-ai-icon.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">AI Memory</text>
+      </view>
+      <view class="tab-slot tab-slot-me" bindtap="onTabMe">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-fig-me-body" src="/images/home-icons/085e1e1538a5a6a1332a621c351fa003f25a6bc0.svg" mode="aspectFit" />
+          <image class="tab-fig-layer tab-fig-me-head" src="/images/home-icons/a7069f68fd8223df4605ba2c0e6c6bff9eb73818.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">Me</text>
+      </view>
+    </view>
+  </view>
+</view>

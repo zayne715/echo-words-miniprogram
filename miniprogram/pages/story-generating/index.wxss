@@ -1,0 +1,131 @@
+@import "../../styles/tabbar.wxss";
+
+page {
+  background: #f5f7fa;
+  height: 100vh;
+  font-family: "SF Pro Display", "Inter", "Helvetica Neue", Arial, "PingFang SC", sans-serif;
+}
+
+.gen-page {
+  min-height: 100vh;
+  height: 100vh;
+  box-sizing: border-box;
+  background: #f5f7fa;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.gen-top {
+  flex-shrink: 0;
+  padding-left: 19.99px;
+  padding-right: 19.99px;
+  padding-bottom: 8px;
+  box-sizing: border-box;
+}
+
+.gen-nav-row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 56px;
+}
+
+.gen-back {
+  width: 39.99px;
+  height: 39.99px;
+  border-radius: 20px;
+  background: rgba(107, 114, 128, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-sizing: border-box;
+}
+
+.gen-back-img {
+  width: 21.991px;
+  height: 21.991px;
+  display: block;
+}
+
+.gen-back-spacer {
+  width: 39.99px;
+  height: 39.99px;
+  flex-shrink: 0;
+}
+
+.gen-head-center {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.gen-head-title {
+  font-size: 18px;
+  line-height: 27px;
+  font-weight: 600;
+  color: #1f2937;
+  text-align: center;
+}
+
+.gen-center {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  padding-bottom: calc(83.993px + env(safe-area-inset-bottom));
+  box-sizing: border-box;
+}
+
+.gen-spinner-wrap {
+  width: 62.467px;
+  height: 62.467px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.gen-spinner {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2.8px solid #e5e7eb;
+  border-top-color: #6366f1;
+  box-sizing: border-box;
+  animation: gen-spin 0.85s linear infinite;
+}
+
+@keyframes gen-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.gen-status {
+  font-size: 17px;
+  line-height: 25.5px;
+  font-weight: 400;
+  color: #6b7280;
+  text-align: center;
+}
+
+.gen-hint {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 400;
+  color: #9ca3af;
+  text-align: center;
+}

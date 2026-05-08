@@ -1,0 +1,46 @@
+<view class="gen-page">
+  <view class="gen-top" style="padding-top: {{navTop}}px;">
+    <view class="gen-nav-row">
+      <view class="gen-back" bindtap="onBack">
+        <image class="gen-back-img" src="/images/figma/story-style/back.svg" mode="aspectFit" />
+      </view>
+      <view class="gen-head-center">
+        <text class="gen-head-title">Generating Story</text>
+      </view>
+      <view class="gen-back-spacer"></view>
+    </view>
+  </view>
+
+  <view class="gen-center">
+    <view class="gen-spinner-wrap">
+      <view class="gen-spinner"></view>
+    </view>
+    <text class="gen-status">AI is crafting your story...</text>
+    <text class="gen-hint">While waiting, you can study other words first.</text>
+  </view>
+
+  <view class="tab-bar">
+    <view class="tab-pill">
+      <view class="tab-slot tab-slot-words" bindtap="onTabWords">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-fig-book-spine" src="/images/figma/tab-book-spine.svg" mode="aspectFit" />
+          <image class="tab-fig-layer tab-fig-book-body" src="/images/figma/tab-book-body.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">Words</text>
+      </view>
+      <view class="tab-slot tab-slot-ai tab-slot--active" bindtap="onTabAiMemory">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-ai-icon-single" src="/images/figma/tab-ai-icon-active.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">AI Memory</text>
+      </view>
+      <view class="tab-slot tab-slot-me" bindtap="onTabMe">
+        <view class="tab-icon-wrap">
+          <image class="tab-fig-layer tab-fig-me-body" src="/images/home-icons/085e1e1538a5a6a1332a621c351fa003f25a6bc0.svg" mode="aspectFit" />
+          <image class="tab-fig-layer tab-fig-me-head" src="/images/home-icons/a7069f68fd8223df4605ba2c0e6c6bff9eb73818.svg" mode="aspectFit" />
+        </view>
+        <text class="tab-label">Me</text>
+      </view>
+    </view>
+  </view>
+</view>

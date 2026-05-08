@@ -1,0 +1,69 @@
+<view class="final-page {{entered ? 'final-page-entered' : ''}}">
+  <scroll-view class="page-scroll" scroll-y="true">
+    <view class="page-scroll-content" style="padding-top: {{navTop}}px;">
+      <view class="top-bar">
+        <view class="circle-btn" bindtap="onBackHome">
+          <image class="circle-icon" src="/images/home-icons/6dafc63eff0172e49e6a21d526cf274db7e46bc3.svg" mode="aspectFit" />
+        </view>
+        <view class="header-progress">
+          <view class="header-progress-fill tier-{{progressTier}}" style="width: {{progressFillWidth}}%;"></view>
+          <text class="header-progress-text">{{progressText}}</text>
+        </view>
+        <view class="circle-btn circle-btn-light {{canGoPrev ? 'circle-btn-light-active' : 'circle-btn-disabled'}}" bindtap="onBackToPrevWordSecondScreen">
+          <view class="reply-wrap">
+            <image class="reply-base" src="/images/home-icons/76cea484aa3fa238f18d58c44aa94af32f279da2.svg" mode="aspectFit" />
+            <image class="reply-arrow" src="/images/home-icons/31901b93e2ee1a23da44c4af6427d2a11906df34.svg" mode="aspectFit" />
+          </view>
+        </view>
+      </view>
+
+      <!-- 第二轮·页面1：仅单词 + 音标 + 小喇叭（不套用第一轮粉色卡片区） -->
+      <view wx:if="{{roundNum === 2}}" class="content-card ff-page1-card ff-round2-page1">
+        <view class="word-title-row">
+          <image class="word-audio" src="/images/home-icons/c7d6beec25db1c5b80705b162fa0b86d4164c358.svg" mode="aspectFit" bindtap="onTapSpeakWord" />
+          <text class="word-title">{{wordData.word}}</text>
+        </view>
+        <text class="word-phonetic">{{wordData.phonetic}}</text>
+      </view>
+
+      <!-- 第三轮·页面1：配图 + 例句 + 发音（与第一轮页面1一致） -->
+      <view wx:else class="content-card ff-page1-card">
+        <view class="word-title-row">
+          <image class="word-audio" src="/images/home-icons/c7d6beec25db1c5b80705b162fa0b86d4164c358.svg" mode="aspectFit" bindtap="onTapSpeakWord" />
+          <text class="word-title">{{wordData.word}}</text>
+        </view>
+        <text class="word-phonetic">{{wordData.phonetic}}</text>
+
+        <view class="word-image-slot">
+          <view class="word-image-slot-pad">
+            <view class="word-image-slot-inner">
+              <image
+                wx:if="{{wordData.imageUrl && !wordImageBroken}}"
+                class="learning-word-image"
+                src="{{wordData.imageUrl}}"
+                mode="aspectFill"
+                binderror="onWordImageError"
+              />
+              <view wx:else class="image-placeholder"></view>
+            </view>
+          </view>
+        </view>
+
+        <view class="example-row">
+          <image class="word-audio example-line-audio" src="/images/home-icons/c7d6beec25db1c5b80705b162fa0b86d4164c358.svg" mode="aspectFit" bindtap="onTapSpeakPage1Example" />
+          <text class="example-text">{{wordData.sentencePre}}<text class="example-highlight">{{wordData.sentenceHighlight}}</text>{{wordData.sentencePost}}</text>
+        </view>
+        <text class="example-cn">{{wordData.sentenceCn}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="bottom-actions-wrap">
+    <view class="action-btn action-btn-left {{isDontKnowPressed ? 'btn-pressed' : 'btn-release'}} {{isSubmitting ? 'btn-disabled' : ''}}" data-action="dont-know" bindtap="onTapResultAction">
+      <text class="action-btn-left-text">Don't Know</text>
+    </view>
+    <view class="action-btn action-btn-right {{isKnowPressed ? 'btn-pressed' : 'btn-release'}} {{isSubmitting ? 'btn-disabled' : ''}}" data-action="know" bindtap="onTapResultAction">
+      <text class="action-btn-right-text">Know ✓</text>
+    </view>
+  </view>
+</view>

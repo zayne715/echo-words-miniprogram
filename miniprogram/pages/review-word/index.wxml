@@ -1,0 +1,38 @@
+<view class="review-page {{entered ? 'review-page-entered' : ''}}">
+  <scroll-view class="page-scroll" scroll-y="true">
+    <view class="page-scroll-content" style="padding-top: {{navTop}}px;">
+      <view class="top-bar">
+        <view class="circle-btn" bindtap="onBackHome">
+          <image class="circle-icon" src="/images/home-icons/6dafc63eff0172e49e6a21d526cf274db7e46bc3.svg" mode="aspectFit" />
+        </view>
+        <view class="header-progress">
+          <view class="header-progress-fill" style="width: {{progressFillWidth}}%;"></view>
+          <text class="header-progress-text">{{progressText}}</text>
+        </view>
+        <view class="circle-btn circle-btn-light {{canGoPrev ? 'circle-btn-light-active' : 'circle-btn-disabled'}}" bindtap="onBackToPrevDetail">
+          <view class="reply-wrap">
+            <image class="reply-base" src="/images/home-icons/76cea484aa3fa238f18d58c44aa94af32f279da2.svg" mode="aspectFit" />
+            <image class="reply-arrow" src="/images/home-icons/31901b93e2ee1a23da44c4af6427d2a11906df34.svg" mode="aspectFit" />
+          </view>
+        </view>
+      </view>
+
+      <view class="content-main">
+        <view class="word-title-row">
+          <image class="word-audio" src="/images/home-icons/c7d6beec25db1c5b80705b162fa0b86d4164c358.svg" mode="aspectFit" bindtap="onTapSpeakWord" />
+          <text class="word-title">{{wordData.word}}</text>
+        </view>
+        <text class="word-phonetic">{{wordData.phonetic}}</text>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="bottom-actions-wrap">
+    <view class="action-btn action-btn-left {{isDontPressed ? 'btn-pressed' : 'btn-release'}} {{isSubmitting ? 'btn-disabled' : ''}}" data-action="dont-remember" bindtap="onTapChoice">
+      <text class="action-btn-left-text">Don't Remember</text>
+    </view>
+    <view class="action-btn action-btn-right {{isRememberPressed ? 'btn-pressed' : 'btn-release'}} {{isSubmitting ? 'btn-disabled' : ''}}" data-action="remember" bindtap="onTapChoice">
+      <text class="action-btn-right-text">Remember ✓</text>
+    </view>
+  </view>
+</view>
