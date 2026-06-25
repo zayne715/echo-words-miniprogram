@@ -5,7 +5,7 @@
   "description": "Engineering checks and tests for the WeChat mini program repository",
   "scripts": {
     "check:syntax": "node ./scripts/check-syntax.js",
-    "test": "node --test ./tests/**/*.test.js",
+    "test": "node ./scripts/run-tests.js",
     "ci": "npm run check:syntax && npm run test"
   }
 }
